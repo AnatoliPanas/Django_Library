@@ -195,7 +195,7 @@ class BookDetailUpdateDeleteView(RetrieveUpdateDestroyAPIView):
             return BookDetailSerializer
         return BookCreateSerializer
 
-    def retrieve(self, request, *args, **kwargs):
+    def retrieve(self, request: Request, *args, **kwargs):
         response = super().retrieve(request, *args, **kwargs)
 
         disc_price = response.data.get('discounted_price')

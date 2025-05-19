@@ -79,7 +79,7 @@ AUTH_USER_MODEL = 'books.User'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -154,6 +154,8 @@ SWAGGER_SETTINGS = {
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'books.paginators.CustomCursorPagination',
     'DEFAULT_AUTHENTICATION_CLASSES': [
+        # 'rest_framework.authentication.TokenAuthentication',
+        # 'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
@@ -172,6 +174,7 @@ SIMPLE_JWT = {
     'SIGNING_KEY': SECRET_KEY,
     'AUTH_HEADER_TYPES': ('Bearer',),
     'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
+    'TOKEN_OBTAIN_SERIALIZER': 'books.serializers.MyCustomJWTSerializer'
 }
 
 

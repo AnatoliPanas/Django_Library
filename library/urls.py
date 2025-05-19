@@ -67,7 +67,7 @@ urlpatterns = [
     ),
     path('author-create/', AuthorCreateView.as_view()),
     path('get-book/<str:book_title>/', GetBook.as_view()),
-    # path('auth-login/', obtain_auth_token),
+    path('auth-login/', obtain_auth_token),
 
 
     path('auth-login/', LogInAPIView.as_view()),

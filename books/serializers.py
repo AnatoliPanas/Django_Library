@@ -4,6 +4,7 @@ from typing import Any
 from django.contrib.auth.password_validation import validate_password
 from rest_framework import serializers
 from django.db import transaction
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 from books.models import Book, User, Author, Genre
 
@@ -319,3 +320,17 @@ class RegisterUserSerializer(serializers.ModelSerializer):
         user.save()
 
         return user
+
+
+
+
+class MyCustomJWTSerializer(TokenObtainPairSerializer):
+
+    @classmethod
+    def get_token(cls, user):
+        data = super().get_token(user)
+
+        # data['username'] = user.username
+        data['role'] = user.role
+
+        return data
